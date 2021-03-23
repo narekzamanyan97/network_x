@@ -8,27 +8,9 @@ from statistics import *
 
 
 def plot_degree_dist_2(degrees_array, title):
-	#mat.figure(figsize=(20, 3))  # width:20, height:3
 	binwidth = 0.5
-	# mat.bar(degrees_array, range(len(degrees_array)), align='edge', width=0.3)
-	# # num_bins = bins=np.arange(min(degree_ratios), max(degree_ratios)
-	# #            + binwidth, binwidth)
-	# if title == 'Copeland Score Histogram':
-		
-	# 	 #mat.xlim(-500, max(degrees_array))
-	# elif title == 'Degree Ratio Histogram':
-	# 	mat.xlim(min(degrees_array), max(degrees_array))
-	# else:
-	# 	mat.xlim()
-	print('here1')
-	# mat.hist(degrees_array, bins=np.arange(min(degrees_array), max(degrees_array) + binwidth, binwidth))
-	
-	print('here2')
-
 	mat.title(title)
-	
 	mat.ylabel('Number of Nodes')
-
 	alpha=0.5
 
 	if title == 'Copeland Score Histogram':
@@ -49,8 +31,7 @@ def plot_degree_dist_2(degrees_array, title):
 		binwidth = 0.015
 		bins=np.arange(0, 0.5, binwidth)
 		alpha=0.5
-
-	print('here3')
+		
 	mat.hist(degrees_array, bins, alpha, histtype='bar', ec='black')
 
 	mat.legend(loc='upper right', fontsize=30)
@@ -92,9 +73,6 @@ def main():
 	############################################################
 	#			Calculating Copeland Score and Degree Ratio	
 	for g in di_graph:
-		# print(g + '_in = ' + str(di_graph.in_degree(g)))
-		# print(g + '_out = ' + str(di_graph.out_degree(g)))
-
 		in_degree = di_graph.in_degree(g)
 		out_degree = di_graph.out_degree(g)
 
@@ -161,7 +139,6 @@ def main():
 
 
 	# Reading Closeness Centrality Values from a file
-	
 	with open('c_centrality_values.txt', 'r') as c_file:
 		line = c_file.readlines()
 		for l in line:
@@ -177,7 +154,6 @@ def main():
 	############################################################
 	#			Mean, Median, and SD for Degree Ratio, Copeland Score, 
 	#			and C Centrality for highest B Centrality 
-	# 1.4
 	b_centralities_high = []
 
 	copeland_scores_high_bc = []
@@ -188,16 +164,12 @@ def main():
 
 	for key, val in b_centralities_dict.items():
 		if float(val) > 0.00002:
-			# print('appending to b_centralities_is_high')
 			b_centralities_high.append(key)
 
 
 	for g in di_graph:
 		try:
 			if b_centralities_high.index(str(g)):
-				# print(g + '_in = ' + str(di_graph.in_degree(g)))
-				# print(g + '_out = ' + str(di_graph.out_degree(g)))
-				# rint('inside if')
 				in_degree = di_graph.in_degree(g)
 				out_degree = di_graph.out_degree(g)
 
@@ -248,9 +220,6 @@ def main():
 	print(median_closeness)
 	print(std_dev_closeness)
 	print(c_centralities_high_bc)
-
-	# for c in range(0, len(c_centralities_high_bc)):
-		# print(c_centralities_high_bc[c])
 	############################################################
 
 
